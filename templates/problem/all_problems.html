@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problems</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <h1>All Problems</h1>
+          <ul class="list-group">
+            {% for problem in problems %}
+            <li class="list-group-item">
+              <a href="{% url 'problem_page' problem.id %}">
+                <strong>Name:</strong> {{ problem.name }}<br>
+                <strong>Priority:</strong> {{ problem.priority }}<br>
+                <strong>Status:</strong> {{ problem.status }}<br>
+                <!-- <strong>Phone:</strong> {{ problem.phone }}<br>
+                <strong>Email:</strong> {{ problem.email }}<br>
+                <p>---------------------------------------------------------------------------</p>
+                <strong>Description:</strong> {{ problem.description }}<br>
+                <p>---------------------------------------------------------------------------</p>
+                <strong>Status:</strong> {{ problem.status }}<br>
+                <strong>Date:</strong> {{ problem.date }}<br> -->
+                <form method="POST" action="{% url 'delete_problem' problem.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+</html>

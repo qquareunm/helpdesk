@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Problem</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body style="background-color: #343a40; padding: 3rem;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="text-center text-white">Add Problem</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <p>
+                            <a href="{% url 'login' %}" class="btn btn-secondary btn-lg">Login</a>
+                            <a href="{% url 'signup' %}" class="btn btn-secondary btn-lg">Signup</a>
+                        </p>
+                        {% if form.errors %}
+                        <div class="alert alert-danger">
+                            {% for field, error_list in form.errors.items %}
+                            <strong>{{ field }}:</strong>
+                            <ul>
+                                {% for error in error_list %}
+                                <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <form method="POST" action="{% url 'add_problem' %}">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="name" placeholder="name" name="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="number" class="form-control" id="phone" placeholder="Phone Number" name="phone">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="text" class="form-control" id="email" placeholder="E-mail" name="email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Describe your problem</label>
+                                <textarea class="form-control" id="description" rows="5" placeholder="Enter your problem here" name="description"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="priority" class="form-label">Select Priority</label>
+                                <select class="form-select" id="priority" name="priority">
+                                    <option value="Low">Low</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="High">High</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- <form>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Enter your email</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text"></div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+  <div class = "wrapper">
+    <form method="POST" action="{% url 'add_problem' %}">
+        {% csrf_token %}
+        
+        <p>Enter your name</p>
+        <input type="text" name="name">
+        
+        <p>Enter your phone number</p>
+        <input type="number" name="phone">
+        
+        <p>Enter your E-mail</p>
+        <input type="text" name="email">
+        
+        <p>Describe your problem</p>
+        <textarea name="description" style="height: 300px; width: 450px; resize: none;" placeholder="Enter your problem here"></textarea>
+        
+        <p>Select Priority</p>
+        <select name="priority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <input type="submit" value="Submit">
+    </form>
+</div> -->
