@@ -19,7 +19,8 @@ media
 
 # AWS User-specific
 .idea/**/aws.xml
-
+prod_settings.py
+local_settings.py
 # Generated files
 .idea/**/contentModel.xml
 
